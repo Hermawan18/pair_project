@@ -8,7 +8,7 @@ class Controller {
             res.send(err);
         }
     }
-    static async aaaaa(req, res) {
+    static async register(req, res) {
         try {
             let errors
             if (req.query.errors) {
@@ -19,7 +19,7 @@ class Controller {
             res.send(err);
         }
     }
-    static async aaaaa(req, res) {
+    static async registerPost(req, res) {
         try {
             
         } catch (error) {
@@ -31,23 +31,32 @@ class Controller {
             }
         }
     }
-    static async aaaaa(req, res) {
+    static async login(req, res) {
+        try {
+            let errors
+            if (req.query.errors) {
+                errors = req.query.errors.split(',')
+            }
+            res.render('login', { errors })
+        } catch (error) {
+            res.send(err);
+        }
+    }
+    static async loginPost(req, res) {
         try {
             
         } catch (error) {
             res.send(err);
         }
     }
-    static async aaaaa(req, res) {
+    static async getLogout(req, res) {
         try {
-            
-        } catch (error) {
-            res.send(err);
-        }
-    }
-    static async aaaaa(req, res) {
-        try {
-            
+            req.session.destroy((err) => {
+                if(err) res.send(err)
+                else{
+                    res.redirect('/login')
+                }
+            })
         } catch (error) {
             res.send(err);
         }
