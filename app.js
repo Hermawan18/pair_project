@@ -17,9 +17,10 @@ app.use(session({
     }
 }))
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
+// app.get('/', (req, res) => {
+//   res.send('Hello World!')
+// })
+app.use('/', require('./routes/index'))
 
 app.listen(port, () => {
   console.log(`Example app listening on port ${port}`)
