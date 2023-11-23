@@ -136,15 +136,15 @@ class Controller {
 
   static async addMateri(req, res) {
     try {
-      let { error } = req.query
-      const {courseId} = req.params
+      let { error } = req.query;
+      const { courseId } = req.params;
       let data = await Course.findByPk(courseId, {
         include: Material,
         where: {
-          id: courseId
-        }
-      })
-      res.render('addMateri', {data, error});
+          id: courseId,
+        },
+      });
+      res.render('addMateri', { data, error });
     } catch (error) {
       res.send(error);
     }
@@ -152,65 +152,86 @@ class Controller {
 
   static async handlerAddMateri(req, res) {
     try {
-      const { courseId } = req.params
+      const { courseId } = req.params;
       const { title, content } = req.body;
-      await Material.create({CourseId: courseId, title, content });
-      res.redirect(`/${courseId}/material`);
+      await Material.create({ CourseId: courseId, title, content });
+      res.redirect(`/course/${courseId}`);
     } catch (error) {
-      res.send(error);
+      if (error.name == 'SequelizeValidationError') {
+        let err = error.errors.map((el) => el.message);
+        res.send(err);
+      } else {
+        res.send(error);
+      }
     }
   }
 
   static async editMateri(req, res) {
     try {
-      const {courseId} = req.params
+      let { error } = req.query;
+      const { courseId } = req.params;
+      const { materiId } = req.params;
+      let dataCourse = await Course.findByPk(courseId);
+      let dataMateri = await Material.findByPk(materiId);
       let data = await Material.findOne({
         where: {
-          id: courseId
-        }
+          id: courseId,
+        },
       });
-      res.render('editMaterial', { data });
+      res.render('editMaterial', { data, dataCourse, dataMateri, error });
     } catch (error) {
-      res.send(error);
+      if (error.name == 'SequelizeValidationError') {
+        let err = error.errors.map((el) => el.message);
+        res.send(err);
+      } else {
+        res.send(error);
+      }
     }
   }
 
   static async handlerEditMateri(req, res) {
     try {
+      const { courseId } = req.params;
+      const { materiId } = req.params;
       const { title, content } = req.body;
-      await Material.update({ title, content });
-      res.redirect(`/${curseId}/material/edit`);
+      await Material.update({ title, content }, { where: {id: materiId}});
+      res.redirect(`/course/${courseId}`);
     } catch (error) {
-      res.send(error);
+      const { courseId } = req.params;
+      const { materiId } = req.params;
+      if (error.name == 'SequelizeValidationError') {
+        let err = error.errors.map((el) => el.message);
+        res.redirect(`/course/${courseId}/material/:materiId/edit?error=${err}`);
+      } else {
+        res.send(error);
+      }
     }
   }
 
   static async deleteMateri(req, res) {
     try {
-      const id = req.query.id
+      const id = req.query.id;
       await Material.destroy({
         where: {
-          id
-        }
-      })
-      res.redirect('/material')
+          id,
+        },
+      });
+      res.redirect('/material');
     } catch (error) {
-      res.send(error)
+      res.send(error);
     }
   }
 
   static async userLists(req, res) {
     try {
       const data = await User.findAll({
-        include: [Profile]
-      })
-      res.render('userLists', { data })
+        include: [Profile],
+      });
+      res.render('userLists', { data });
     } catch (error) {
-      res.send(error)
+      res.send(error);
     }
   }
-
-
 }
 
 module.exports = Controller;

@@ -15,7 +15,7 @@
 
   <div class="container-fluid" style="width: 600px; margin: auto;">
     <div class="card-body">
-      <form action="/editMaterial" method="post">
+      <form action="/course/<%= data.id %>/material/add" method="post">
           <div class="mb-3">
               <label for="title" class="form-label">Title</label>
               <input type="text" class="form-control" id="title" name="title" required>

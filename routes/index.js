@@ -30,17 +30,19 @@ router.get('/', Controller.landingPage);
 
 router.get('/category', Controller.category);
 
-router.get('/course', Controller.course);
-
 router.get('/material', Controller.materi);
 
-router.get('/:courseId', Controller.courseById);
+router.get('/course', Controller.course);
 
-router.get('/:courseId/material/add', Controller.addMateri);
+router.get('/course/:courseId', Controller.courseById);
 
-router.post('/:courseId/material/add', Controller.handlerAddMateri);
+router.get('/course/:courseId/material/add', Controller.addMateri);
 
-router.get('/:courseId/material/:materiId/edit', Controller.editMateri);
+router.post('/course/:courseId/material/add', Controller.handlerAddMateri);
+
+router.get('/course/:courseId/material/:materiId/edit', Controller.editMateri);
+
+router.post('/course/:courseId/material/:materiId/edit', Controller.handlerEditMateri);
 
 // router.get('/')
 
