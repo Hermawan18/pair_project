@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <%- include('./partials/_bootstrap') %>
-        <title>Register</title>
-    </head>
-    <%- include('./partials/_navbar.ejs') %>
-    <body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <%- include('./partials/_bootstrap') %>
+    <title>Register</title>
+  </head>
+  <%- include('./partials/_navbar.ejs') %>
+  <body>
+    <% if(errors) { %>
+    <p style="color: red"><%= errors %></p>
+    <% } %>
 
-                <p style="color: red;"><%=  %></p>
-
-
-        <div class="container mt-5">
-            <div class="justify-content-center">
-                <div class="col-md-6">
-                    <div class="card">
-                        <div class="card-header">
-                            <h1 class="text-center">Registration</h1>
-                        </div>
-                        <div class="card-body">
-                            <form action="/register" method="POST">
-                                <!-- <div class="mb-3">
+    <div class="container mt-5">
+      <div class="justify-content-center">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header">
+              <h1 class="text-center">Registration</h1>
+            </div>
+            <div class="card-body">
+              <form action="/register" method="POST">
+                <!-- <div class="mb-3">
                                     <label for="firstName" class="form-label">First Name</label>
                                     <input type="text" class="form-control" id="firstName" name="firstName" placeholder="Enter your first name" required>
                                 </div>
@@ -30,94 +30,94 @@
                                     <label for="lastName" class="form-label">Last Name</label>
                                     <input type="text" class="form-control" id="lastName" name="lastName" placeholder="Enter your last name" required>
                                 </div> -->
-                    
-                                <div class="mb-3">
-                                    <label for="username" class="form-label">Username</label>
-                                    <input type="text" class="form-control" id="username" name="username" placeholder="Alphabets and Numeric only" required>
-                                </div>
 
-                                <div class="mb-3">
-                                    <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="email1@example.com" required>
-                                </div>
-                    
-                                <div class="mb-3">
-                                    <label for="password" class="form-label">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required>
-                                </div>
-                    
-                                <!-- <div class="mb-3">
+                <div class="mb-3">
+                  <label for="username" class="form-label">Username</label>
+                  <input type="text" class="form-control" id="username" name="username" placeholder="Alphabets and Numeric only" required />
+                </div>
+
+                <div class="mb-3">
+                  <label for="email" class="form-label">Email</label>
+                  <input type="email" class="form-control" id="email" name="email" placeholder="email1@example.com" required />
+                </div>
+
+                <div class="mb-3">
+                  <label for="password" class="form-label">Password</label>
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password" required />
+                </div>
+
+                <!-- <div class="mb-3">
                                     <label for="confirmPassword" class="form-label">Confirm Password</label>
                                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm your password" required>
                                 </div> -->
-                    
-                                <div class="mb-3">
-                                    <label for="role">Role</label><br>
-                                    <input type="radio" id="admin" name="isAdmin" value="1">
-                                    <label for="admin">Admin</label>
-                    
-                                    <input checked="checked" type="radio" id="notAdmin" name="isAdmin" value="0">
-                                    <label for="notAdmin">Not Admin</label>
-                                </div>
-                    
-                                <div  class="d-grid">
-                                    <button type="submit" class="btn btn-primary">Register</button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
+
+                <div class="mb-3">
+                  <label for="role">Role</label><br />
+                  <input type="radio" id="admin" name="isAdmin" value="1" />
+                  <label for="admin">Admin</label>
+
+                  <input checked="checked" type="radio" id="notAdmin" name="isAdmin" value="0" />
+                  <label for="notAdmin">Not Admin</label>
                 </div>
+
+                <div class="d-grid">
+                  <button type="submit" class="btn btn-primary">Register</button>
+                </div>
+              </form>
             </div>
+          </div>
         </div>
-        <script src="path-to-your-bootstrap-js/bootstrap.min.js">
-            // Password validation
-            // has to be at least 6 characters long
-            // has to match confirm password
-            const password = document.getElementById('password');
-            const confirmPassword = document.getElementById('confirmPassword');
-            confirmPassword.addEventListener('input', () => {
-                if (password.value.length < 6 || password.value.length > 32) {
-                    confirmPassword.setCustomValidity('Password must be 6-32 characters long');
-                } else if (confirmPassword.value !== password.value) {
-                    confirmPassword.setCustomValidity('Passwords do not match');
-                } else {
-                    confirmPassword.setCustomValidity('');
-                }
-            });
+      </div>
+    </div>
+    <script src="path-to-your-bootstrap-js/bootstrap.min.js">
+      // Password validation
+      // has to be at least 6 characters long
+      // has to match confirm password
+      const password = document.getElementById('password');
+      const confirmPassword = document.getElementById('confirmPassword');
+      confirmPassword.addEventListener('input', () => {
+          if (password.value.length < 6 || password.value.length > 32) {
+              confirmPassword.setCustomValidity('Password must be 6-32 characters long');
+          } else if (confirmPassword.value !== password.value) {
+              confirmPassword.setCustomValidity('Passwords do not match');
+          } else {
+              confirmPassword.setCustomValidity('');
+          }
+      });
 
-            // Username validation
-            // has to be at least 3 characters long
-            // only contains alphabets and numbers
-            const username = document.getElementById('username');
-            username.addEventListener('input', () => {
-                const regex = /^[a-zA-Z0-9]+$/;
-                if (username.value.length < 3) {
-                    username.setCustomValidity('Username must be at least 3 characters long');
-                } else if (!regex.test(username.value)) {
-                    username.setCustomValidity('Username can only contain alphabets and numbers');
-                } else {
-                    username.setCustomValidity('');
-                }
-            });
+      // Username validation
+      // has to be at least 3 characters long
+      // only contains alphabets and numbers
+      const username = document.getElementById('username');
+      username.addEventListener('input', () => {
+          const regex = /^[a-zA-Z0-9]+$/;
+          if (username.value.length < 3) {
+              username.setCustomValidity('Username must be at least 3 characters long');
+          } else if (!regex.test(username.value)) {
+              username.setCustomValidity('Username can only contain alphabets and numbers');
+          } else {
+              username.setCustomValidity('');
+          }
+      });
 
 
-            const firstName = document.getElementById('firstName');
-            firstName.addEventListener('input', () => {
-                if (firstName.value.trim() == '') {
-                firstName.setCustomValidity('First Name cannot be empty');
-                } else {
-                firstName.setCustomValidity('');
-                }
-            });
+      const firstName = document.getElementById('firstName');
+      firstName.addEventListener('input', () => {
+          if (firstName.value.trim() == '') {
+          firstName.setCustomValidity('First Name cannot be empty');
+          } else {
+          firstName.setCustomValidity('');
+          }
+      });
 
-            const lastName = document.getElementById('lastName');
-            lastName.addEventListener('input', () => {
-                if (lastName.value.trim() == '') {
-                lastName.setCustomValidity('Last Name cannot be empty');
-                } else {
-                lastName.setCustomValidity('');
-                }
-            });
-        </script>
-    </body>
+      const lastName = document.getElementById('lastName');
+      lastName.addEventListener('input', () => {
+          if (lastName.value.trim() == '') {
+          lastName.setCustomValidity('Last Name cannot be empty');
+          } else {
+          lastName.setCustomValidity('');
+          }
+      });
+    </script>
+  </body>
 </html>

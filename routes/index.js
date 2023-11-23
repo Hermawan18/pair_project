@@ -29,6 +29,7 @@ router.get('/category', Controller.category)
 router.get('/course', Controller.course)
 
 router.get('/material', Controller.materi)
+router.post('/material', Controller.addMateri)
 
 router.use('/logout', Controller.getLogout)
 

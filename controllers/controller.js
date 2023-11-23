@@ -12,10 +12,10 @@ class Controller {
   static async register(req, res) {
     try {
       let errors;
-      if (req.query.errors) {
-        errors = req.query.errors.split(',');
+      if (req.query.error) {
+        errors = req.query.error.split(',');
       }
-      res.render('register');
+      res.render('register', { errors });
     } catch (error) {
       res.send(error);
     }
@@ -26,10 +26,9 @@ class Controller {
       await User.create({ username, email, password, isAdmin });
       res.redirect('/login');
     } catch (error) {
-      console.log(error);
       if (error.name === 'SequelizeValidationError') {
         let errors = error.errors.map((el) => el.message);
-        res.redirect(`/register?errors=${errors}`);
+        res.redirect(`/register?error=${errors}`);
       } else {
         res.send(error);
       }
@@ -37,7 +36,8 @@ class Controller {
   }
   static async login(req, res) {
     try {
-      const { error } = req.query;
+      const error = req.query.error;
+      console.log(error);
       if (error) {
         //   errors = req.query.errors.split(',')
         res.render('login', { error });
@@ -58,13 +58,13 @@ class Controller {
         if (isValidPassword) {
           req.session.userId = data.id;
           req.session.role = data.role;
-          return res.redirect('/');
+          res.redirect('/');
         } else {
-          const error = 'invalid username/password';
-          return res.redirect(`/login?error=${error}`);
+          const error = 'invalid_username/password';
+          res.redirect(`/login?error=${error}`);
         }
       } else {
-        const error = 'invalid username/password';
+        const error = 'invalid_username/password';
         res.redirect(`/login?error=${error}`);
       }
     } catch (error) {
@@ -102,11 +102,18 @@ class Controller {
 
   static async materi(req, res) {
     try {
-        let data = await Material.findAll()
-        console.log(data);
-        res.render('material', {data})
+      let data = await Material.findAll();
+      console.log(data);
+      res.render('material', { data });
     } catch (error) {
-        res.send(error)
+      res.send(error);
+    }
+  }
+
+  static async addMateri(req, res) {
+    try {
+    } catch (error) {
+      res.send(error);
     }
   }
 }
