@@ -1,57 +1,57 @@
 [
     {
       "id": 1,
-      "userId": 1,
-      "courseId": 1,
+      "UserId": 1,
+      "CourseId": 1,
       "enrollmentDate": "2023-09-20",
       "completionStatus": true
     },
     {
       "id": 2,
-      "userId": 1,
-      "courseId": 2,
+      "UserId": 1,
+      "CourseId": 2,
       "enrollmentDate": "2023-10-05",
       "completionStatus": false
     },
     {
       "id": 3,
-      "userId": 2,
-      "courseId": 3,
+      "UserId": 2,
+      "CourseId": 3,
       "enrollmentDate": "2023-10-10",
       "completionStatus": true
     },
     {
       "id": 4,
-      "userId": 2,
-      "courseId": 1,
+      "UserId": 2,
+      "CourseId": 1,
       "enrollmentDate": "2023-10-15",
       "completionStatus": false
     },
     {
       "id": 5,
-      "userId": 3,
-      "courseId": 2,
+      "UserId": 3,
+      "CourseId": 2,
       "enrollmentDate": "2023-11-01",
       "completionStatus": true
     },
     {
       "id": 6,
-      "userId": 3,
-      "courseId": 2,
+      "UserId": 3,
+      "CourseId": 2,
       "enrollmentDate": "2023-11-05",
       "completionStatus": true
     },
     {
       "id": 7,
-      "userId": 4,
-      "courseId": 3,
+      "UserId": 4,
+      "CourseId": 3,
       "enrollmentDate": "2023-11-10",
       "completionStatus": false
     },
     {
       "id": 8,
-      "userId": 1,
-      "courseId": 1,
+      "UserId": 1,
+      "CourseId": 1,
       "enrollmentDate": "2023-11-15",
       "completionStatus": false
     }

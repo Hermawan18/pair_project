@@ -3,19 +3,19 @@
       "id": 1,
       "name": "Mathematics Basics",
       "description": "Introduction to fundamental mathematical concepts.",
-      "categoryId": 1
+      "CategoryId": 1
     },
     {
       "id": 2,
       "name": "English Grammar",
       "description": "Learn grammar rules and improve language skills.",
-      "categoryId": 2
+      "CategoryId": 2
     },
     {
       "id": 3,
       "name": "Science Explorations",
       "description": "Discover the wonders of science.",
-      "categoryId": 3
+      "CategoryId": 3
     }
   ]
   

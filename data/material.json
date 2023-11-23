@@ -1,19 +1,19 @@
 [
     {
       "id": 1,
-      "courseId": 1,
+      "CourseId": 1,
       "title": "Introduction to Numbers",
       "content": "Explaining the basics of numbers and arithmetic operations."
     },
     {
       "id": 2,
-      "courseId": 2,
+      "CourseId": 2,
       "title": "Nouns and Verbs",
       "content": "Understanding the basics of nouns and verbs in English grammar."
     },
     {
       "id": 3,
-      "courseId": 3,
+      "CourseId": 3,
       "title": "Properties of Matter",
       "content": "Exploration of various properties of matter in science."
     }

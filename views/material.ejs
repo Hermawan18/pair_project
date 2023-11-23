@@ -9,15 +9,10 @@
 <body>
     <%- include('./partials/_navbar') %>
     <div class="container-fluid">
-        <h1>Course</h1>
-        <br>
         <% data.forEach(el => { %>
-         <div>
-            <h3><%= el.name %></h3>
-            <p><%= el.description %></p>
-         </div>
+            <h1><%= el.title %></h1>
+            <p><%= el.content %></p>
         <% }) %>
-        <a class="btn btn-primary me-2" href="./material" role="button">Materi</a>
     </div>
 </body>
 </html>

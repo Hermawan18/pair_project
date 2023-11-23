@@ -1,28 +1,28 @@
 [
     {
       "id": 1,
-      "userId": 1,
+      "UserId": 1,
       "fullName": "William Reed",
       "bio": "Passionate learner, eager to explore new subjects.",
       "address": "123 Main Street, City, Country"
     },
     {
       "id": 2,
-      "userId": 2,
+      "UserId": 2,
       "fullName": "Ava Carter",
       "bio": "Passionate about literature and writing.",
       "address": "456 Elm Street, Town, Country"
     },
     {
       "id": 3,
-      "userId": 3,
+      "UserId": 3,
       "fullName": "Ethan White",
       "bio": "Enthusiastic about science and technology.",
       "address": "789 Oak Street, Village, Country"
     },
     {
       "id": 4,
-      "userId": 4,
+      "UserId": 4,
       "fullName": "Alex Green",
       "bio": "Enjoys exploring history and ancient civilizations.",
       "address": "770 Lakeview Drive, Suburb, Country"

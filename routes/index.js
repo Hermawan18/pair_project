@@ -2,7 +2,6 @@ const express = require('express')
 const Controller = require('../controllers/controller')
 const router = express.Router()
 
-router.get('/', Controller.landingPage)
 
 router.get('/register', Controller.register)
 router.post('/register', Controller.registerPost)
@@ -22,8 +21,16 @@ router.use(function (req, res, next) {  // for id
     }
 })
 
-router.get('/logout', Controller.getLogout)
+router.get('/', Controller.landingPage)
+// router.get('/home', Controller.home)
 
-router.use('/home', Controller.home)
+router.get('/category', Controller.category)
+
+router.get('/course', Controller.course)
+
+router.get('/material', Controller.materi)
+
+router.use('/logout', Controller.getLogout)
+
 
 module.exports = router
