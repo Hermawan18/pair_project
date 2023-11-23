@@ -8,7 +8,10 @@
 </head>
 <%- include('./partials/_navbar') %>
 <body>
-    <p class="text-center" style="color: red;"><%= error %></p>
+    
+    <% if (error) { %>
+        <p class="text-center" style="color: red;"><%= error %></p>
+    <% } %>
     
     <form action="/login" method="POST">
         <div class="container-fluid">

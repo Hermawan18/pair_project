@@ -1,5 +1,7 @@
 const bcrypt = require('bcryptjs');
-const { Category, Course, User, Material } = require('../models');
+const { Category, Course, User, Material, Profile } = require('../models');
+// const { formatDate, getCurrentTime } = require('../helpers/helper')
+const { Op } = require('sequelize');
 
 class Controller {
   static async landingPage(req, res) {
@@ -93,7 +95,16 @@ class Controller {
   }
   static async course(req, res) {
     try {
-      let data = await Course.findAll({ include: Category });
+      let { search } = req.query;
+      let opt = {
+        include: Category,
+      };
+      if (search) {
+        opt.where.name = {
+          [Op.iLike]: `%${search}%`,
+        };
+      }
+      let data = await Course.findAll(opt);
       res.render('course', { data });
     } catch (error) {
       res.send(error);
@@ -110,12 +121,96 @@ class Controller {
     }
   }
 
-  static async addMateri(req, res) {
+  static async courseById(req, res) {
     try {
+      let { notification } = req.query;
+      let { courseId } = req.params;
+      let data = await Course.findByPk(courseId, {
+        include: Material,
+      });
+      res.render('detailCourse', { data, courseId, notification });
     } catch (error) {
       res.send(error);
     }
   }
+
+  static async addMateri(req, res) {
+    try {
+      let { error } = req.query
+      const {courseId} = req.params
+      let data = await Course.findByPk(courseId, {
+        include: Material,
+        where: {
+          id: courseId
+        }
+      })
+      res.render('addMateri', {data, error});
+    } catch (error) {
+      res.send(error);
+    }
+  }
+
+  static async handlerAddMateri(req, res) {
+    try {
+      const { courseId } = req.params
+      const { title, content } = req.body;
+      await Material.create({CourseId: courseId, title, content });
+      res.redirect(`/${courseId}/material`);
+    } catch (error) {
+      res.send(error);
+    }
+  }
+
+  static async editMateri(req, res) {
+    try {
+      const {courseId} = req.params
+      let data = await Material.findOne({
+        where: {
+          id: courseId
+        }
+      });
+      res.render('editMaterial', { data });
+    } catch (error) {
+      res.send(error);
+    }
+  }
+
+  static async handlerEditMateri(req, res) {
+    try {
+      const { title, content } = req.body;
+      await Material.update({ title, content });
+      res.redirect(`/${curseId}/material/edit`);
+    } catch (error) {
+      res.send(error);
+    }
+  }
+
+  static async deleteMateri(req, res) {
+    try {
+      const id = req.query.id
+      await Material.destroy({
+        where: {
+          id
+        }
+      })
+      res.redirect('/material')
+    } catch (error) {
+      res.send(error)
+    }
+  }
+
+  static async userLists(req, res) {
+    try {
+      const data = await User.findAll({
+        include: [Profile]
+      })
+      res.render('userLists', { data })
+    } catch (error) {
+      res.send(error)
+    }
+  }
+
+
 }
 
 module.exports = Controller;

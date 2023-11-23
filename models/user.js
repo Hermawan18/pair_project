@@ -15,6 +15,18 @@ module.exports = (sequelize, DataTypes) => {
       User.hasOne(models.Profile)
       User.hasMany(models.Enrollment)
     }
+
+    get fullName() {
+      return `${this.firstName} ${this.lastName}`;
+    }
+  
+    get userProfile() {
+      return {
+        username: this.username,
+        email: this.email,
+        fullName: this.fullName,
+      };
+    }
   }
   User.init({
     username: {
@@ -77,10 +89,15 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     hooks: {
-      beforeCreate(instance, options) {
-        var salt = bcrypt.genSaltSync(8);
-        var hash = bcrypt.hashSync(instance.password, salt);
-        instance.password = hash;
+      beforeCreate: (user, options) => {
+        console.log(user);
+        user.TypeId = 1,
+        user.password = bcrypt.hashSync(user.password, 10)
+        if (user.isAdmin == 1) {
+          user.isAdmin = true
+        } else {
+          user.isAdmin = false
+        }
       }
     },
     sequelize,

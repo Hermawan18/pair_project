@@ -14,6 +14,9 @@ module.exports = (sequelize, DataTypes) => {
       Enrollment.belongsTo(models.User)
       Enrollment.belongsTo(models.Course)
     }
+    tanggalEnrollment(createdAt){
+      return this.enrollmentDate = createdAt
+    }
   }
   Enrollment.init({
     UserId: DataTypes.INTEGER,

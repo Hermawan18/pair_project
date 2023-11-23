@@ -6,14 +6,11 @@
   <title>Add Materi</title>
   <%- include('./partials/_bootstrap') %>
 </head>
+<%- include('./partials/_navbar') %>
 <body>
-  <%- include('./partials/_navbar') %>
-  <h1 class="text-center">Add Materi</h1>
-  <% if(error) { %>
-    <p style="color: red;"><%= error %></p>
-  <% } %>
+  <h1>Add Materi</h1>
 
-  <div class="container-fluid" style="width: 600px; margin: auto;">
+  <div class="container-fluid">
     <div class="card-body">
       <form action="/editMaterial" method="post">
           <div class="mb-3">

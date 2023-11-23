@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <%- include('./partials/_bootstrap') %>
+  <title>Detail Course</title>
+</head>
+<body>
+  <%- include('./partials/_navbar') %>
+  <h1>Detail Course</h1>
+  <% data.forEach(el => { %>
+    <h1><%= el.name %></h1>
+    <p><%= el.description %></p>
+  <% }) %>
+</body>
+</html>
